@@ -1,0 +1,307 @@
+openapi: 3.0.1
+info:
+  title: FinXCeltaTmPartyService
+  description: This API provides endpoints for managing customer information, including creating, retrieving, updating customer records.
+  version: 11.0.1
+servers:
+- url: 'https://core-api.shine.staging.saas.tmachine.io'
+paths:
+   /Party/Initiate:
+    post:
+      tags:
+          - Party Facility
+      summary: InCR Initiate A new party
+      description: InCR Initiate A party
+      operationId: InitiateParty
+      requestBody:
+        $ref: '#/components/requestBodies/InitiatePartyRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/InitiatePartyResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+   /Party/Search:
+    post:
+      tags:
+          - Party Facility
+      summary: Search for a party
+      description: Search for a party
+      operationId: SearchParty
+      requestBody:
+        $ref: '#/components/requestBodies/InitiateSearchRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/InitiateSearchResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    PartyName:
+          type: object
+          properties:
+            firstName:
+              type: string
+              description: "\n"
+              format: string
+            middleName:
+              type: string
+              description: "\n"
+              format: string
+            lastName:
+              type: string
+              description: "\n"
+              format: string
+    ElectronicAddressType:
+          type: object
+          properties:
+            electronicAddressTypeValue:
+              type: string
+              description: "\n"
+              format: string
+            addressDescription:
+              type: string
+              description: "\n"
+              format: string
+    MobilePhoneType:
+          type: object
+          properties:
+            mobilePhoneNumber:
+              type: string
+              description: "\n"
+              format: string
+    HomePhoneType:
+          type: object
+          properties:
+            homePhoneNumber:
+              type: string
+              description: "\n"
+              format: string
+    BusinessPhoneType:
+          type: object
+          properties:
+            businessPhoneNumber:
+              type: string
+              description: "\n"
+              format: string
+    party:
+          type: object
+          properties:
+            partyName:
+              $ref: '#/components/schemas/PartyName'
+            title:
+              type: string
+              description: "\n"
+              format: string
+            birthDate:
+              type: string
+              description: "\n"
+              format: string
+            gender:
+              type: string
+              description: "\n"
+              format: string
+            nationality:
+              type: string
+              description: "\n"
+              format: string
+            residence:
+              type: string
+              description: "\n"
+              format: string
+            taxCountry:
+              type: string
+              description: "\n"
+              format: string
+            electronicAddressType:
+              $ref: '#/components/schemas/ElectronicAddressType'
+            mobilePhoneType:
+              $ref: '#/components/schemas/MobilePhoneType'
+            homePhoneType:
+              $ref: '#/components/schemas/HomePhoneType'
+            businessPhoneType:
+              $ref: '#/components/schemas/BusinessPhoneType'
+            preferredContactMethod:
+              type: string
+              description: "\n"
+              format: string
+            accessibilityMethod:
+              type: string
+              description: "\n"
+              format: string
+            partyExternalReference:
+              type: string
+              description: "\n"
+              format: string
+    Parties:  
+      type: array
+      items:
+        properties:
+          partyReference:
+                type: string
+                description: "\n"
+                format: string
+          status:
+                type: string
+                description: "\n"
+                format: string
+          party:
+            $ref: '#/components/schemas/party'
+    `SearchRequest:  
+      type: object
+      properties:
+        partyStatuses:
+          type: array
+          items:
+            type: string
+            format: string
+        partyName:
+          type: array
+          items:
+            type: string
+            format: string
+        mobilePhoneNumbers:
+          type: array
+          items:
+            type: string
+            format: string
+        emailAddressDescription:
+          type: array
+          items:
+            type: string
+            format: string
+        page_size:
+                type: string
+                description: "\n"
+                format: string
+        page_token:
+                type: string
+                description: "\n"
+                format: string
+    InitiatePartyRequest:
+      type: object
+      properties:
+        party:
+          $ref: '#/components/schemas/party'
+    InitiatePartyResponse:
+      type: object
+      properties:
+        partyReference:
+              type: string
+              description: "\n"
+              format: string
+        status:
+              type: string
+              description: "\n"
+              format: string
+        party:
+          $ref: '#/components/schemas/party'
+    InitiateSearchResponse:
+      type: object
+      properties:
+        parties:
+          $ref: '#/components/schemas/Parties'
+        nextPageToken:
+              type: string
+              description: "\n"
+              format: string
+        previousPageToken:
+              type: string
+              description: "\n"
+              format: string
+    HTTPError:
+      type: object
+      properties:
+        status_code:
+          type: string
+          description: "\n"
+          format: string
+        status:
+          type: string
+          description: "\n"
+          format: string
+        message:
+          type: string
+          description: "\n"
+          format: string
+  requestBodies:
+    InitiatePartyRequest:
+        description: Initiate New Party
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/InitiatePartyRequest'
+    InitiateSearchRequest:
+        description: Search for a party
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/InitiateSearchRequest'
+  responses:
+    InitiatePartyResponse:
+        description: PartyFacility 
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/InitiatePartyResponse'
+    InitiateSearchResponse:
+        description: PartyFacility 
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/InitiateSearchResponse'  
+    BadRequest:
+      description: BadRequest
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPError'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPError'
+    NotFound:
+      description: NotFound
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPError'
+    TooManyRequests:
+      description: TooManyRequests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPError'
+    InternalServerError:
+      description: InternalServerError
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPError'
