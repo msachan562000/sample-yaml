@@ -61,7 +61,6 @@
 						"in"
 					],
 					"path": [
-						"logger",
 						"health",
 						"check"
 					]
