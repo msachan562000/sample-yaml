@@ -7,7 +7,7 @@
 		"_collection_link": "https://dark-spaceship-317079.postman.co/workspace/FinX~6a1105d2-2a25-48a6-9530-3eac0e5baf58/collection/12378847-66967f2b-9410-4797-b316-b6f32fe2b6d8?action=share&source=collection_link&creator=12378847"
 	},
 	"item": [{
-			"name": "logger sapi",
+			"name": "logger sapi 2",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -36,7 +36,7 @@
 			"response": []
 		},
 		{
-			"name": "logger sapi health check",
+			"name": "logger sapi health check 2",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -53,7 +53,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://finx-codegen-api-dev.fincuro.in/logger/healthcheck",
+					"raw": "https://finx-codegen-api-dev.fincuro.in/logger/health/check",
 					"protocol": "https",
 					"host": [
 						"finx-codegen-api-dev",
