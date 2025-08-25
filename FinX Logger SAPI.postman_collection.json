@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "66967f2b-9410-4797-b316-b6f32fe2b6d8",
+		"name": "FinX Logger SAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12378847",
+		"_collection_link": "https://dark-spaceship-317079.postman.co/workspace/FinX~6a1105d2-2a25-48a6-9530-3eac0e5baf58/collection/12378847-66967f2b-9410-4797-b316-b6f32fe2b6d8?action=share&source=collection_link&creator=12378847"
+	},
+	"item": [{
+			"name": "logger sapi",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"logType\":\"INFO\",\n    \"serviceName\":\"Test Service\",\n    \"message\":\"INFO  Test message!!!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://finx-codegen-api-dev.fincuro.in/logger",
+					"protocol": "https",
+					"host": [
+						"finx-codegen-api-dev",
+						"fincuro",
+						"in"
+					],
+					"path": [
+						"logger"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logger sapi health check",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"logType\":\"INFO\",\n    \"serviceName\":\"Test Service\",\n    \"message\":\"INFO  Test message!!!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://finx-codegen-api-dev.fincuro.in/logger/healthcheck",
+					"protocol": "https",
+					"host": [
+						"finx-codegen-api-dev",
+						"fincuro",
+						"in"
+					],
+					"path": [
+						"logger",
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
