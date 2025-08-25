@@ -62,7 +62,8 @@
 					],
 					"path": [
 						"logger",
-						"health/check"
+						"health",
+						"check"
 					]
 				}
 			},
